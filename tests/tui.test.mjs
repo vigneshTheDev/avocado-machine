@@ -24,12 +24,12 @@ test('renderMarkdownLines caps output to maxLines and reflows to width', () => {
 test('calculateShortcutLines accurately derives lines based on available columns', () => {
   // Narrow minimum terminal (60 cols, 58 avail): wraps to 3 lines
   assert.equal(calculateShortcutLines(practiceShortcuts, 58), 3);
-  // Medium terminal (80 cols, 78 avail): wraps to 2 lines
-  assert.equal(calculateShortcutLines(practiceShortcuts, 78), 2);
+  // Medium terminal (100 cols, 98 avail): wraps to 2 lines
+  assert.equal(calculateShortcutLines(practiceShortcuts, 98), 2);
   // 130 terminal cols (128 avail): wraps to 2 lines
   assert.equal(calculateShortcutLines(practiceShortcuts, 128), 2);
-  // Wide terminal (160 cols, 158 avail): fits in 1 line
-  assert.equal(calculateShortcutLines(practiceShortcuts, 158), 1);
+  // Wide terminal (170 cols, 168 avail): fits in 1 line
+  assert.equal(calculateShortcutLines(practiceShortcuts, 168), 1);
   // Empty shortcuts list
   assert.equal(calculateShortcutLines([], 80), 0);
 });

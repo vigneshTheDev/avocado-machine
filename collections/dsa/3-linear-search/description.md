@@ -1,4 +1,4 @@
-# Linear Search
+# Linear Search (Easy)
 
 Implement `linear_search(haystack, needle)`, returning whether the finite number occurs in the array. Scan from left to right in O(n) time and O(1) extra space. Empty input returns false; duplicates and negative values are valid. Do not mutate the input or use built-in search helpers.
 

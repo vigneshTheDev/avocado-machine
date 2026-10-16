@@ -1,0 +1,17 @@
+{
+  "id": 6,
+  "title": "Bubble Sort",
+  "variants": {
+    "ts": {
+      "runner": "typescript-vitest",
+      "sm2": {
+        "repetitions": 0,
+        "easeFactor": 2.5,
+        "intervalDays": 0,
+        "dueDate": null,
+        "lastGrade": null,
+        "lastReviewedAt": null
+      }
+    }
+  }
+}

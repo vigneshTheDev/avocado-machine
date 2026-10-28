@@ -5,12 +5,12 @@
     "ts": {
       "runner": "typescript-vitest",
       "sm2": {
-        "repetitions": 2,
-        "easeFactor": 2.7,
-        "intervalDays": 6,
-        "dueDate": "2026-10-04",
+        "repetitions": 3,
+        "easeFactor": 2.8000000000000003,
+        "intervalDays": 17,
+        "dueDate": "2026-11-11",
         "lastGrade": 5,
-        "lastReviewedAt": "2026-09-28"
+        "lastReviewedAt": "2026-10-25"
       }
     }
   }

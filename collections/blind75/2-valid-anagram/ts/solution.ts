@@ -1,21 +1,21 @@
 export function isAnagram(s: string, t: string): boolean {
-  const sFreq: Record<string, number> = {};
-  const tFreq: Record<string, number> = {};
-
   if (s.length !== t.length) return false;
 
+  const sFreq = new Map<string, number>();
+  const tFreq = new Map<string, number>();
+
   for (let c of s) {
-    sFreq[c] = sFreq[c] || 0;
-    sFreq[c]++;
+    const f = sFreq.get(c) || 0;
+    sFreq.set(c, f + 1);
   }
 
   for (let c of t) {
-    tFreq[c] = tFreq[c] || 0;
-    tFreq[c]++;
+    const f = tFreq.get(c) || 0;
+    tFreq.set(c, f + 1);
   }
 
-  for (let key in sFreq) {
-    if (sFreq[key] !== tFreq[key]) return false;
+  for (let [key] of sFreq) {
+    if (sFreq.get(key) !== tFreq.get(key)) return false;
   }
   return true;
 }

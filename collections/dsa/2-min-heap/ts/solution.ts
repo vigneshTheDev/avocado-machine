@@ -1,76 +1,77 @@
 export class MinHeap {
-  private list: number[] = [];
+  arr: number[] = [];
   constructor() {}
 
   get size(): number {
-    return this.list.length;
+    return this.arr.length;
   }
 
   insert(value: number): void {
-    this.list.push(value);
+    this.arr.push(value);
     this.heapifyUp(this.size - 1);
   }
 
   peek(): number | undefined {
-    return this.list[0];
+    return this.arr[0];
   }
 
   extractMin(): number | undefined {
-    if (this.size === 0) return;
+    if (this.size <= 1) return this.arr.pop();
 
-    const min = this.list[0];
-    const lastVal = this.list.pop() as number;
-    if (this.size === 0) return min;
+    const last = this.arr.pop() as number;
+    const min = this.arr[0];
 
-    this.list[0] = lastVal;
+    this.arr[0] = last;
     this.heapifyDown(0);
+
     return min;
   }
 
-  private parent(idx: number): number {
-    return Math.ceil(idx / 2) - 1;
-  }
-  private lChild(idx: number): number {
+  leftChild(idx: number) {
     return 2 * idx + 1;
   }
-  private rChild(idx: number): number {
+   
+  rightChild(idx: number) {
     return 2 * idx + 2;
   }
 
-  private heapifyUp(idx: number): void {
+  parent(idx: number) {
+    return Math.ceil(idx / 2) - 1;
+  }
+
+  heapifyUp(idx: number) {
     if (idx === 0) return;
 
     const pIdx = this.parent(idx);
 
-    const val = this.list[idx];
-    const pVal = this.list[pIdx];
+    const val = this.arr[idx];
+    const pVal = this.arr[pIdx];
 
     if (pVal > val) {
-      this.list[idx] = pVal;
-      this.list[pIdx] = val;
+      this.arr[idx] = pVal;
+      this.arr[pIdx] = val;
       this.heapifyUp(pIdx);
     }
   }
 
-  private heapifyDown(idx: number): void {
-    if (idx === this.size - 1) return;
+  heapifyDown(idx: number) {
+    if (idx >= this.size) return;
 
-    const lIdx = this.lChild(idx);
-    const rIdx = this.rChild(idx);
-
+    const lIdx = this.leftChild(idx);
+    const rIdx = this.rightChild(idx);
     if (lIdx >= this.size) return;
 
-    const val = this.list[idx];
-    const lVal = this.list[lIdx];
-    const rVal = this.list[rIdx];
+    const val = this.arr[idx];
+    const lVal = this.arr[lIdx];
+    const rVal = this.arr[rIdx];
 
-    if ((rIdx >= this.size || lVal <= rVal) && lVal < val) {
-      this.list[idx] = lVal;
-      this.list[lIdx] = val;
+    if (lVal < val && (rIdx >= this.size || lVal <= rVal)) {
+      this.arr[idx] = lVal;
+      this.arr[lIdx] = val;
       this.heapifyDown(lIdx);
-    } else if (rVal <= lVal && rVal < val) {
-      this.list[idx] = rVal;
-      this.list[rIdx] = val;
+    } else if (rIdx < this.size && rVal < val && rVal < lVal) {
+      this.arr[idx] = rVal;
+      this.arr[rIdx] = val;
       this.heapifyDown(rIdx);
     }
   }

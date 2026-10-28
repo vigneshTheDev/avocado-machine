@@ -1,9 +1,10 @@
 export function twoSum(nums: number[], target: number): number[] {
-  const complementary: Record<number, number> = {};
+  const visited = new Map<number, number>();
   for (let i = 0; i < nums.length; i++) {
-    const comp = target - nums[i];
-    if (complementary[comp] != null) return [complementary[comp], i];
-    complementary[nums[i]] = i;
+    const n = nums[i];
+    const complement = target - n;
+    if (visited.has(complement)) return [visited.get(complement) as number, i];
+    visited.set(n, i);
   }
   return [-1, -1];
 }

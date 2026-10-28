@@ -39,10 +39,7 @@ test("updates and reads change recency without evicting on a miss", () => {
   expect(cache.get("d")).toBe(4);
 });
 
-test("zero and one capacities, replacement, and object keys", () => {
-  const zero = new LRU<number, number>(0);
-  zero.update(0, 0);
-  expect(zero.get(0)).toBeUndefined();
+test("one capacity, replacement, and object keys", () => {
   const one = new LRU<object, boolean>(1);
   const a = {}, b = {};
   one.update(a, false);

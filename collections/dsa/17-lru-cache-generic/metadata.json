@@ -6,11 +6,11 @@
       "runner": "typescript-vitest",
       "sm2": {
         "repetitions": 0,
-        "easeFactor": 2.5,
-        "intervalDays": 0,
-        "dueDate": null,
-        "lastGrade": null,
-        "lastReviewedAt": null
+        "easeFactor": 1.8599999999999997,
+        "intervalDays": 1,
+        "dueDate": "2026-10-29",
+        "lastGrade": 2,
+        "lastReviewedAt": "2026-10-28"
       }
     }
   }

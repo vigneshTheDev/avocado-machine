@@ -1,4 +1,15 @@
-import type {ListNode} from "../../support";
+import type { ListNode } from "../../support";
 export function reverseList(head: ListNode | null): ListNode | null {
-  throw new Error("Not implemented");
+  if (head == null) return null;
+
+  let curr: ListNode | null = head;
+  let prev: ListNode | null = null;
+  while (curr) {
+    const next: ListNode | null = curr.next;
+    curr.next = prev;
+
+    prev = curr;
+    curr = next;
+  }
+  return prev;
 }

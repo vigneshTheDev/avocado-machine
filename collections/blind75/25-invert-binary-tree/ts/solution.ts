@@ -1,4 +1,17 @@
-import type {TreeNode} from "../../support";
+import type { TreeNode } from "../../support";
 export function invertTree(root: TreeNode | null): TreeNode | null {
-  throw new Error("Not implemented");
+  return dfs(root);
+}
+
+function dfs(node: TreeNode | null): TreeNode | null {
+  if (node == null) return null;
+
+  dfs(node.right);
+  dfs(node.left);
+  const right = node.right;
+  const left = node.left;
+  node.right = left;
+  node.left = right;
+
+  return node;
 }

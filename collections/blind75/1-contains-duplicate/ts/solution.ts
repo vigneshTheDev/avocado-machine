@@ -1,9 +1,8 @@
 export function containsDuplicate(nums: number[]): boolean {
-  const seen = new Set<number>()
-  for (let n of nums) {
-    if (seen.has(n)) return true
-
-    seen.add(n)
+  const seen = new Set<number>();
+  for (let num of nums) {
+    if (seen.has(num)) return true;
+    seen.add(num);
   }
-  return false
+  return false;
 }

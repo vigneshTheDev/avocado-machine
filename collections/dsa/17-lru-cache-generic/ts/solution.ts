@@ -6,20 +6,23 @@ export default class LRU<K, V> {
 
   private lookup = new Map<K, ListNode<V>>();
   private reverseLookup = new Map<ListNode<V>, K>();
+
   constructor(private capacity: number) {}
 
   update(key: K, value: V): void {
     const node = this.lookup.get(key);
-    if (node == null) {
-      const newNode = new ListNode<V>(value);
-      this.prepend(newNode);
-      this.lookup.set(key, newNode);
-      this.reverseLookup.set(newNode, key);
-      this.trimCache();
-    } else {
-      this.detach(node);
+    if (node) {
+      this.detatch(node);
       this.prepend(node);
       node.value = value;
+    } else {
+      const newNode = new ListNode(value);
+      this.prepend(newNode);
+
+      this.lookup.set(key, newNode);
+      this.reverseLookup.set(newNode, key);
+
+      this.trimCache();
     }
   }
 
@@ -27,56 +30,52 @@ export default class LRU<K, V> {
     const node = this.lookup.get(key);
     if (!node) return;
 
-    this.detach(node);
+    this.detatch(node);
     this.prepend(node);
     return node.value;
   }
 
-  private detach(node: ListNode<V>): void {
-    const prev = node.prev;
+  private detatch(node: ListNode<V>): void {
     const next = node.next;
+    const prev = node.prev;
 
-    if (prev) prev.next = next;
     if (next) next.prev = prev;
+    if (prev) prev.next = next;
+
+    if (this.head === node) this.head = next;
+    if (this.tail === node) this.tail = prev;
+
     node.next = null;
     node.prev = null;
 
-    if (node === this.head) this.head = next;
-    if (node === this.tail) this.tail = prev;
     this.length--;
   }
 
   private prepend(node: ListNode<V>): void {
-    this.length++;
-
-    node.next = this.head;
     if (this.head) this.head.prev = node;
-
+    node.next = this.head;
     this.head = node;
+
     if (this.tail == null) this.tail = node;
+
+    this.length++;
   }
 
   private trimCache(): void {
-    if (this.length <= this.capacity) return;
-    if (this.tail == null) return;
+    if (this.length <= this.capacity || !this.tail) return;
 
-    const tail = this.tail;
-    const key = this.reverseLookup.get(tail)!;
+    const oldTail = this.tail;
+    const key = this.reverseLookup.get(oldTail)!;
 
     this.lookup.delete(key);
-    this.reverseLookup.delete(tail);
+    this.reverseLookup.delete(oldTail);
 
-    this.tail = tail.prev;
-    if (this.tail) this.tail.next = null;
-    if (this.head === tail) this.head = null;
-    this.length--;
+    this.detatch(oldTail);
   }
 }
 
 class ListNode<V> {
-  constructor(
-    public value: V,
-    public next: ListNode<V> | null = null,
-    public prev: ListNode<V> | null = null,
-  ) {}
+  public next: ListNode<V> | null = null;
+  public prev: ListNode<V> | null = null;
+  constructor(public value: V) {}
 }

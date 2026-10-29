@@ -7,7 +7,10 @@ export default class LRU<K, V> {
   private lookup = new Map<K, ListNode<V>>();
   private reverseLookup = new Map<ListNode<V>, K>();
 
-  constructor(private capacity: number) {}
+  constructor(private capacity: number) {
+    if (typeof capacity !== "number" || capacity % 1 !== 0 || capacity < 0)
+      throw new Error("Invalid Capacity");
+  }
 
   update(key: K, value: V): void {
     const node = this.lookup.get(key);

@@ -6,18 +6,16 @@ export default class LRU<K, V> {
 
   private lookup = new Map<K, ListNode<V>>();
   private reverseLookup = new Map<ListNode<V>, K>();
-
   constructor(private capacity: number) {
-    if (typeof capacity !== "number" || capacity % 1 !== 0 || capacity < 0)
-      throw new Error("Invalid Capacity");
+    if (capacity < 0 || capacity % 1 !== 0) throw new Error("Invalid Capacity");
   }
 
   update(key: K, value: V): void {
     const node = this.lookup.get(key);
     if (node) {
+      node.value = value;
       this.detatch(node);
       this.prepend(node);
-      node.value = value;
     } else {
       const newNode = new ListNode(value);
       this.prepend(newNode);
@@ -38,42 +36,41 @@ export default class LRU<K, V> {
     return node.value;
   }
 
-  private detatch(node: ListNode<V>): void {
-    const next = node.next;
+  private detatch(node: ListNode<V>) {
     const prev = node.prev;
-
-    if (next) next.prev = prev;
-    if (prev) prev.next = next;
-
-    if (this.head === node) this.head = next;
-    if (this.tail === node) this.tail = prev;
+    const next = node.next;
 
     node.next = null;
     node.prev = null;
 
+    if (prev) prev.next = next;
+    if (next) next.prev = prev;
+
+    if (this.head === node) this.head = next;
+    if (this.tail === node) this.tail = prev;
+
     this.length--;
   }
-
-  private prepend(node: ListNode<V>): void {
-    if (this.head) this.head.prev = node;
-    node.next = this.head;
+  private prepend(node: ListNode<V>) {
+    const head = this.head;
     this.head = node;
 
+    node.next = head;
+    if (head) head.prev = node;
     if (this.tail == null) this.tail = node;
 
     this.length++;
   }
-
   private trimCache(): void {
-    if (this.length <= this.capacity || !this.tail) return;
+    if (this.length <= this.capacity || this.tail == null) return;
 
-    const oldTail = this.tail;
-    const key = this.reverseLookup.get(oldTail)!;
+    const tail = this.tail;
+    const key = this.reverseLookup.get(tail)!;
 
     this.lookup.delete(key);
-    this.reverseLookup.delete(oldTail);
+    this.reverseLookup.delete(tail);
 
-    this.detatch(oldTail);
+    this.detatch(tail);
   }
 }
 

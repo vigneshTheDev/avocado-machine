@@ -22,6 +22,48 @@ const cases = [
       "A man, a plan, a canal: Panama"
     ],
     "expected": true
+  },
+  {
+    "name": "non-ASCII letters are not alphanumeric (U+212A KELVIN SIGN)",
+    "args": [
+      "\u212Aa"
+    ],
+    "expected": true
+  },
+  {
+    "name": "dotted capital I (U+0130) is ignored",
+    "args": [
+      "\u0130a"
+    ],
+    "expected": true
+  },
+  {
+    "name": "digits count and are compared",
+    "args": [
+      "0P"
+    ],
+    "expected": false
+  },
+  {
+    "name": "mixed digits palindrome",
+    "args": [
+      "1a2 2A1"
+    ],
+    "expected": true
+  },
+  {
+    "name": "empty string",
+    "args": [
+      ""
+    ],
+    "expected": true
+  },
+  {
+    "name": "single character",
+    "args": [
+      "a"
+    ],
+    "expected": true
   }
 ];
 

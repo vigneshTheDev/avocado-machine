@@ -16,12 +16,12 @@ export class MinHeap {
   }
 
   extractMin(): number | undefined {
-    if (this.size === 0) return;
-    if (this.size === 1) return this.arr.pop();
+    if (this.size <= 1) return this.arr.pop();
 
     const min = this.arr[0];
     const last = this.arr.pop()!;
     this.arr[0] = last;
+
     this.heapifyDown(0);
     return min;
   }
@@ -61,11 +61,13 @@ export class MinHeap {
 
   private heapifyUp(idx: number) {
     if (idx === 0) return;
+
     const pIdx = this.parent(idx);
 
     const val = this.arr[idx];
     const pVal = this.arr[pIdx];
-    if (pVal > val) {
+
+    if (val < pVal) {
       this.arr[idx] = pVal;
       this.arr[pIdx] = val;
       this.heapifyUp(pIdx);

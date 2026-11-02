@@ -6,8 +6,14 @@ export default class SinglyLinkedList<T> {
 
   constructor() {}
 
+  get(idx: number): T | undefined {
+    const node = this.nodeAt(idx);
+    return node?.value;
+  }
+
   prepend(item: T): void {
     const node = new ListNode(item);
+
     node.next = this.head;
     this.head = node;
 
@@ -15,30 +21,30 @@ export default class SinglyLinkedList<T> {
     this.length++;
   }
 
-  insertAt(item: T, idx: number): void {
-    if (idx > this.length || idx < 0) throw new RangeError('idx out of range')
-    if (idx === 0) return this.prepend(item);
-    if (idx === this.length) return this.append(item);
-
-    const prev = this.nodeAt(idx - 1);
-    if (!prev) throw new Error("prev node not found");
-
-    this.length++;
-    const curr = prev.next;
-    const node = new ListNode(item);
-
-    prev.next = node;
-    node.next = curr;
-  }
-
   append(item: T): void {
     const node = new ListNode(item);
 
-    if (this.head == null) this.head = node;
     if (this.tail) this.tail.next = node;
-
     this.tail = node;
 
+    if (this.head == null) this.head = node;
+    this.length++;
+  }
+
+  insertAt(item: T, idx: number): void {
+    if (idx < 0 || idx > this.length) throw new RangeError("Invalid idx");
+
+    if (idx === 0) return this.prepend(item);
+    if (idx === this.length) return this.append(item);
+
+    const node = new ListNode(item);
+    const prev = this.nodeAt(idx - 1);
+
+    if (!prev) throw new Error("prev node not found");
+
+    const curr = prev.next;
+    prev.next = node;
+    node.next = curr;
     this.length++;
   }
 
@@ -46,65 +52,52 @@ export default class SinglyLinkedList<T> {
     let curr = this.head;
     let prev: ListNode<T> | null = null;
     while (curr) {
-      if (curr.value !== item) {
-        prev = curr;
-        curr = curr.next;
-        continue;
+      if (curr.value === item) {
+        if (prev) prev.next = curr.next;
+        if (curr === this.head) this.head = this.head.next;
+        if (curr === this.tail) this.tail = prev;
+        this.length--;
+        return item;
       }
-
-      if (prev) prev.next = curr.next;
-      if (this.head === curr) this.head = curr.next;
-      if (this.tail === curr) this.tail = prev;
-      this.length--;
-      return item;
+      prev = curr;
+      curr = curr.next;
     }
-  }
-
-  get(idx: number): T | undefined {
-    if (idx >= this.length || idx < 0) return;
-
-    const node = this.nodeAt(idx);
-    if (!node) throw new Error("node not found");
-    return node.value;
   }
 
   removeAt(idx: number): T | undefined {
-    if (!this.head || idx >= this.length || idx < 0) return;
-
+    if (idx < 0 || idx >= this.length) return;
     if (idx === 0) {
+      const head = this.head;
+      if (this.tail === this.head) this.tail = null;
+      this.head = this.head?.next || null;
       this.length--;
-      const head = this.head
-      if (this.head === this.tail) this.tail = null;
-      this.head = this.head.next;
-      return head.value;
+      return head?.value;
     }
 
     const prev = this.nodeAt(idx - 1);
-    if (!prev) throw new Error("prev node not found");
-
     const curr = prev?.next;
-    if (curr) prev.next = curr.next;
+
+    if (prev) prev.next = curr?.next || null;
     if (curr === this.tail) this.tail = prev;
 
     this.length--;
-    return curr?.value
+    return curr?.value;
   }
 
-  private nodeAt(idx: number): ListNode<T> | undefined {
-    if (idx >= this.length) return;
-
-    let curr = this.head;
+  private nodeAt(idx: number): ListNode<T> | null {
     let i = 0;
+    let curr = this.head;
+
     while (curr) {
       if (i === idx) return curr;
-
       curr = curr.next;
       i++;
     }
+    return null;
   }
 }
 
-class ListNode<T> {
-  public next: ListNode<T> | null = null;
-  constructor(public value: T) {}
+class ListNode<V> {
+  public next: ListNode<V> | null = null;
+  constructor(public value: V) {}
 }

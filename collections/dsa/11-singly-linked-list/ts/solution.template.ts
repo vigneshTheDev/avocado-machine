@@ -5,11 +5,11 @@ export default class SinglyLinkedList<T> {
     throw new Error("Not implemented");
   }
 
-  prepend(item: T): void {
+  get(idx: number): T | undefined {
     throw new Error("Not implemented");
   }
 
-  insertAt(item: T, idx: number): void {
+  prepend(item: T): void {
     throw new Error("Not implemented");
   }
 
@@ -17,15 +17,20 @@ export default class SinglyLinkedList<T> {
     throw new Error("Not implemented");
   }
 
-  remove(item: T): T | undefined {
+  insertAt(item: T, idx: number): void {
     throw new Error("Not implemented");
   }
 
-  get(idx: number): T | undefined {
+  remove(item: T): T | undefined {
     throw new Error("Not implemented");
   }
 
   removeAt(idx: number): T | undefined {
     throw new Error("Not implemented");
   }
+}
+
+class ListNode<V> {
+  public next: ListNode<V> | null = null;
+  constructor(public value: V) {}
 }

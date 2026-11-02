@@ -6,6 +6,11 @@ test.each([
   ['Aa', 1],
   ['abc', 1],
   ['', 0],
+  ['aaaa', 4],
+  ['aaa', 3],
+  ['aaabbbccc', 7],
+  ['AAaa', 4],
+  ['aabbccdde', 9],
 ])('finds maximum palindrome length for %j', (s, expected) => {
   expect(longestPalindrome(s)).toBe(expected);
 });

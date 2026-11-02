@@ -66,6 +66,74 @@ const cases = [
         "b"
       ]
     ]
+  },
+  {
+    "name": "all strings identical form one group",
+    "args": [
+      [
+        "abc",
+        "abc",
+        "abc"
+      ]
+    ],
+    "expected": [
+      [
+        "abc",
+        "abc",
+        "abc"
+      ]
+    ]
+  },
+  {
+    "name": "single empty string",
+    "args": [
+      [
+        ""
+      ]
+    ],
+    "expected": [
+      [
+        ""
+      ]
+    ]
+  },
+  {
+    "name": "strings that differ only in letter counts stay apart",
+    "args": [
+      [
+        "aab",
+        "abb",
+        "bab"
+      ]
+    ],
+    "expected": [
+      [
+        "aab"
+      ],
+      [
+        "abb",
+        "bab"
+      ]
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        "act",
+        "cat",
+        "hat"
+      ]
+    ],
+    "expected": [
+      [
+        "act",
+        "cat"
+      ],
+      [
+        "hat"
+      ]
+    ]
   }
 ];
 

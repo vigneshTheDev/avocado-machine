@@ -40,6 +40,48 @@ const cases = [
       ]
     ],
     "expected": 0
+  },
+  {
+    "name": "no prices",
+    "args": [
+      []
+    ],
+    "expected": 0
+  },
+  {
+    "name": "one price",
+    "args": [
+      [
+        5
+      ]
+    ],
+    "expected": 0
+  },
+  {
+    "name": "a later minimum does not beat an earlier trade",
+    "args": [
+      [
+        3,
+        8,
+        1,
+        2
+      ]
+    ],
+    "expected": 5
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        10,
+        1,
+        5,
+        6,
+        7,
+        1
+      ]
+    ],
+    "expected": 6
   }
 ];
 

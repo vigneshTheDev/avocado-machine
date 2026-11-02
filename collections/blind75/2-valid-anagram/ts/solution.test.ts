@@ -25,6 +25,38 @@ const cases = [
       "abbc"
     ],
     "expected": false
+  },
+  {
+    "name": "equal strings are anagrams",
+    "args": [
+      "listen",
+      "listen"
+    ],
+    "expected": true
+  },
+  {
+    "name": "two empty strings are anagrams",
+    "args": [
+      "",
+      ""
+    ],
+    "expected": true
+  },
+  {
+    "name": "same letters but one extra copy",
+    "args": [
+      "aab",
+      "abb"
+    ],
+    "expected": false
+  },
+  {
+    "name": "description example",
+    "args": [
+      "racecar",
+      "carrace"
+    ],
+    "expected": true
   }
 ];
 

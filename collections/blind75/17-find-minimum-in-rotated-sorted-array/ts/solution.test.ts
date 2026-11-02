@@ -34,6 +34,66 @@ const cases = [
       ]
     ],
     "expected": 1
+  },
+  {
+    "name": "rotated by one",
+    "args": [
+      [
+        5,
+        1,
+        2,
+        3,
+        4
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "two elements rotated",
+    "args": [
+      [
+        2,
+        1
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "two elements unrotated",
+    "args": [
+      [
+        1,
+        2
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "negative values",
+    "args": [
+      [
+        -1,
+        0,
+        3,
+        -5,
+        -3
+      ]
+    ],
+    "expected": -5
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        3,
+        4,
+        5,
+        6,
+        1,
+        2
+      ]
+    ],
+    "expected": 1
   }
 ];
 

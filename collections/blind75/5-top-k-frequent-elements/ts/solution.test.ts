@@ -54,6 +54,77 @@ const cases = [
     "expected": [
       4
     ]
+  },
+  {
+    "name": "k equals the number of distinct values",
+    "args": [
+      [
+        1,
+        2,
+        2,
+        3
+      ],
+      3
+    ],
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "frequencies need bucket ordering",
+    "args": [
+      [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      2
+    ],
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "most frequent values are not the largest values",
+    "args": [
+      [
+        5,
+        3,
+        3,
+        1,
+        1,
+        1
+      ],
+      2
+    ],
+    "expected": [
+      1,
+      3
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      2
+    ],
+    "expected": [
+      2,
+      3
+    ]
   }
 ];
 

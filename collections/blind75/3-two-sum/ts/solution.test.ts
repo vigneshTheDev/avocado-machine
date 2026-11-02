@@ -46,6 +46,70 @@ const cases = [
       0,
       2
     ]
+  },
+  {
+    "name": "answer uses the last index",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      13
+    ],
+    "expected": [
+      3,
+      4
+    ]
+  },
+  {
+    "name": "negative target",
+    "args": [
+      [
+        -3,
+        4,
+        -5,
+        1
+      ],
+      -8
+    ],
+    "expected": [
+      0,
+      2
+    ]
+  },
+  {
+    "name": "first value is not part of the answer",
+    "args": [
+      [
+        3,
+        2,
+        4
+      ],
+      6
+    ],
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        3,
+        4,
+        5,
+        6
+      ],
+      7
+    ],
+    "expected": [
+      0,
+      1
+    ]
   }
 ];
 

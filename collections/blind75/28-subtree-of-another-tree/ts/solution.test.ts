@@ -51,6 +51,101 @@ const cases = [
       ]
     ],
     "expected": true
+  },
+  {
+    "name": "root value matches but the subtree is lower",
+    "args": [
+      [
+        1,
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "LeetCode example 2: candidate has an extra descendant",
+    "args": [
+      [
+        3,
+        4,
+        5,
+        1,
+        2,
+        null,
+        null,
+        null,
+        null,
+        0
+      ],
+      [
+        4,
+        1,
+        2
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "multi-digit value does not contain a shorter one",
+    "args": [
+      [
+        12
+      ],
+      [
+        2
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "shorter value does not contain a multi-digit one",
+    "args": [
+      [
+        2
+      ],
+      [
+        12
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "child side matters",
+    "args": [
+      [
+        1,
+        2,
+        null,
+        3
+      ],
+      [
+        2,
+        null,
+        3
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        2,
+        4,
+        5
+      ]
+    ],
+    "expected": true
   }
 ];
 

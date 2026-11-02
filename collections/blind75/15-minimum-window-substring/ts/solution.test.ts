@@ -25,6 +25,54 @@ const cases = [
       "ABC"
     ],
     "expected": "BANC"
+  },
+  {
+    "name": "source equals target",
+    "args": [
+      "abc",
+      "abc"
+    ],
+    "expected": "abc"
+  },
+  {
+    "name": "target needs more copies than source has",
+    "args": [
+      "a",
+      "aa"
+    ],
+    "expected": ""
+  },
+  {
+    "name": "matching is case-sensitive",
+    "args": [
+      "a",
+      "A"
+    ],
+    "expected": ""
+  },
+  {
+    "name": "window at the very start",
+    "args": [
+      "abxxxx",
+      "ab"
+    ],
+    "expected": "ab"
+  },
+  {
+    "name": "window at the very end",
+    "args": [
+      "xxxxab",
+      "ba"
+    ],
+    "expected": "ab"
+  },
+  {
+    "name": "description example",
+    "args": [
+      "OUZODYXAZV",
+      "XYZ"
+    ],
+    "expected": "YXAZ"
   }
 ];
 

@@ -72,6 +72,119 @@ const cases = [
       15,
       7
     ]
+  },
+  {
+    "name": "single node",
+    "args": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "expected": [
+      1
+    ]
+  },
+  {
+    "name": "left-only chain",
+    "args": [
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "expected": [
+      3,
+      2,
+      null,
+      1
+    ]
+  },
+  {
+    "name": "negative values",
+    "args": [
+      [
+        -1,
+        -2,
+        -3
+      ],
+      [
+        -2,
+        -1,
+        -3
+      ]
+    ],
+    "expected": [
+      -1,
+      -2,
+      -3
+    ]
+  },
+  {
+    "name": "full tree of depth 3",
+    "args": [
+      [
+        3,
+        9,
+        1,
+        2,
+        20,
+        15,
+        7
+      ],
+      [
+        1,
+        9,
+        2,
+        3,
+        15,
+        20,
+        7
+      ]
+    ],
+    "expected": [
+      3,
+      9,
+      20,
+      1,
+      2,
+      15,
+      7
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        1,
+        3,
+        4
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      3,
+      null,
+      null,
+      null,
+      4
+    ]
   }
 ];
 

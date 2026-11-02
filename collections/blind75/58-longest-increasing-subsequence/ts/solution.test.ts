@@ -37,6 +37,41 @@ const cases = [
       ]
     ],
     "expected": 4
+  },
+  {
+    "name": "strictly decreasing",
+    "args": [
+      [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        9,
+        1,
+        4,
+        2,
+        3,
+        3,
+        7
+      ]
+    ],
+    "expected": 4
+  },
+  {
+    "name": "2500 elements",
+    "args": [
+      Array.from({length: 2500}, (_, i) => (i % 50) * 50 + (49 - Math.floor(i / 50)))
+    ],
+    "expected": 50
   }
 ];
 

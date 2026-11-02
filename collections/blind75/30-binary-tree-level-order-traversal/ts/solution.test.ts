@@ -48,6 +48,89 @@ const cases = [
         9
       ]
     ]
+  },
+  {
+    "name": "left-skewed tree has one node per level",
+    "args": [
+      [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4
+      ]
+    ],
+    "expected": [
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ]
+    ]
+  },
+  {
+    "name": "level with gaps",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        null,
+        null,
+        5
+      ]
+    ],
+    "expected": [
+      [
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ]
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    ],
+    "expected": [
+      [
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6,
+        7
+      ]
+    ]
   }
 ];
 

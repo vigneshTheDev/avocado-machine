@@ -39,6 +39,63 @@ const cases = [
       ]
     ],
     "expected": 42
+  },
+  {
+    "name": "single negative node",
+    "args": [
+      [
+        -5
+      ]
+    ],
+    "expected": -5
+  },
+  {
+    "name": "path turns at a deep node and excludes the root",
+    "args": [
+      [
+        -100,
+        -100,
+        null,
+        10,
+        null,
+        5,
+        6
+      ]
+    ],
+    "expected": 21
+  },
+  {
+    "name": "zeros",
+    "args": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "expected": 0
+  },
+  {
+    "name": "zero beats negative neighbours",
+    "args": [
+      [
+        -1,
+        0,
+        -2
+      ]
+    ],
+    "expected": 0
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "expected": 6
   }
 ];
 

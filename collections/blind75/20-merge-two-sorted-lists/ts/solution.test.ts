@@ -47,6 +47,110 @@ const cases = [
       2,
       3
     ]
+  },
+  {
+    "name": "second list empty",
+    "args": [
+      [
+        1,
+        2
+      ],
+      []
+    ],
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "every node of the first list is smaller",
+    "args": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "name": "every node of the second list is smaller",
+    "args": [
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "name": "negative values",
+    "args": [
+      [
+        -5,
+        -1,
+        3
+      ],
+      [
+        -3,
+        0
+      ]
+    ],
+    "expected": [
+      -5,
+      -3,
+      -1,
+      0,
+      3
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        3,
+        5
+      ]
+    ],
+    "expected": [
+      1,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   }
 ];
 

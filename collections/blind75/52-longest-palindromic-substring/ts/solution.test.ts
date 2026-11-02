@@ -22,6 +22,34 @@ const cases = [
       "babad"
     ],
     "expected": "bab"
+  },
+  {
+    "name": "single character",
+    "args": [
+      "a"
+    ],
+    "expected": "a"
+  },
+  {
+    "name": "whole string is a palindrome",
+    "args": [
+      "racecar"
+    ],
+    "expected": "racecar"
+  },
+  {
+    "name": "even-length palindrome at the end",
+    "args": [
+      "xyzabba"
+    ],
+    "expected": "abba"
+  },
+  {
+    "name": "description example",
+    "args": [
+      "abbc"
+    ],
+    "expected": "bb"
   }
 ];
 

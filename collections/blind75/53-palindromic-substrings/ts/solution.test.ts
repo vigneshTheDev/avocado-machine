@@ -22,6 +22,27 @@ const cases = [
       "abc"
     ],
     "expected": 3
+  },
+  {
+    "name": "empty string",
+    "args": [
+      ""
+    ],
+    "expected": 0
+  },
+  {
+    "name": "even palindrome inside",
+    "args": [
+      "abba"
+    ],
+    "expected": 6
+  },
+  {
+    "name": "1000 identical characters",
+    "args": [
+      "a".repeat(1000)
+    ],
+    "expected": 500500
   }
 ];
 

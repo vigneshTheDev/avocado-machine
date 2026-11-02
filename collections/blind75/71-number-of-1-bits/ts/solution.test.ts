@@ -22,6 +22,27 @@ const cases = [
       4294967295
     ],
     "expected": 32
+  },
+  {
+    "name": "alternating bits",
+    "args": [
+      2863311530
+    ],
+    "expected": 16
+  },
+  {
+    "name": "one",
+    "args": [
+      1
+    ],
+    "expected": 1
+  },
+  {
+    "name": "description example",
+    "args": [
+      23
+    ],
+    "expected": 4
   }
 ];
 

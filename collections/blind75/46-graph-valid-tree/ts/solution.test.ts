@@ -51,6 +51,77 @@ const cases = [
       ]
     ],
     "expected": true
+  },
+  {
+    "name": "two nodes without an edge",
+    "args": [
+      2,
+      []
+    ],
+    "expected": false
+  },
+  {
+    "name": "two nodes with an edge",
+    "args": [
+      2,
+      [
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "n-1 edges with a cycle and a separate component",
+    "args": [
+      5,
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "description example",
+    "args": [
+      5,
+      [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    ],
+    "expected": true
   }
 ];
 

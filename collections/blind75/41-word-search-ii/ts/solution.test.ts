@@ -81,6 +81,91 @@ const cases = [
       "ab",
       "ac"
     ]
+  },
+  {
+    "name": "words sharing prefixes",
+    "args": [
+      [
+        [
+          "o",
+          "a",
+          "a",
+          "n"
+        ],
+        [
+          "e",
+          "t",
+          "a",
+          "e"
+        ],
+        [
+          "i",
+          "h",
+          "k",
+          "r"
+        ],
+        [
+          "i",
+          "f",
+          "l",
+          "v"
+        ]
+      ],
+      [
+        "oath",
+        "pea",
+        "eat",
+        "rain",
+        "oat",
+        "oaths"
+      ]
+    ],
+    "expected": [
+      "eat",
+      "oath",
+      "oat"
+    ]
+  },
+  {
+    "name": "empty word list",
+    "args": [
+      [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      []
+    ],
+    "expected": []
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      [
+        "ab",
+        "ac",
+        "abcd"
+      ]
+    ],
+    "expected": [
+      "ab",
+      "ac"
+    ]
   }
 ];
 

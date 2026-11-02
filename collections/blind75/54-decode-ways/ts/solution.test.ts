@@ -22,6 +22,48 @@ const cases = [
       "06"
     ],
     "expected": 0
+  },
+  {
+    "name": "single zero",
+    "args": [
+      "0"
+    ],
+    "expected": 0
+  },
+  {
+    "name": "27 has only one decoding",
+    "args": [
+      "27"
+    ],
+    "expected": 1
+  },
+  {
+    "name": "226",
+    "args": [
+      "226"
+    ],
+    "expected": 3
+  },
+  {
+    "name": "double zero",
+    "args": [
+      "100"
+    ],
+    "expected": 0
+  },
+  {
+    "name": "description example",
+    "args": [
+      "12"
+    ],
+    "expected": 2
+  },
+  {
+    "name": "45 ones",
+    "args": [
+      "1".repeat(45)
+    ],
+    "expected": 1836311903
   }
 ];
 

@@ -42,3 +42,16 @@ test("adding a longer word preserves its already stored prefix", () => {
   expect(dict.search("apple")).toBe(true);
   expect(dict.search("appl")).toBe(false);
 });
+
+test("all-dot patterns, a trailing dot and patterns longer than every word", () => {
+  const dict = new WordDictionary();
+  dict.addWord("ab");
+  dict.addWord("bad");
+  expect(dict.search("..")).toBe(true);
+  expect(dict.search(".")).toBe(false);
+  expect(dict.search("ba.")).toBe(true);
+  expect(dict.search("ab.")).toBe(false);
+  expect(dict.search("b.d")).toBe(true);
+  expect(dict.search("bad.")).toBe(false);
+  expect(dict.search("ab..")).toBe(false);
+});

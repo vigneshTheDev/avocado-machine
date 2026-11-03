@@ -33,14 +33,13 @@ export default class SinglyLinkedList<T> {
 
   insertAt(item: T, idx: number): void {
     if (idx < 0 || idx > this.length) throw new RangeError("Invalid idx");
-
     if (idx === 0) return this.prepend(item);
     if (idx === this.length) return this.append(item);
 
     const node = new ListNode(item);
     const prev = this.nodeAt(idx - 1);
 
-    if (!prev) throw new Error("prev node not found");
+    if (prev == null) throw new Error("prev not found");
 
     const curr = prev.next;
     prev.next = node;
@@ -54,10 +53,10 @@ export default class SinglyLinkedList<T> {
     while (curr) {
       if (curr.value === item) {
         if (prev) prev.next = curr.next;
-        if (curr === this.head) this.head = this.head.next;
+        if (curr === this.head) this.head = curr.next;
         if (curr === this.tail) this.tail = prev;
         this.length--;
-        return item;
+        return curr.value;
       }
       prev = curr;
       curr = curr.next;
@@ -68,18 +67,18 @@ export default class SinglyLinkedList<T> {
     if (idx < 0 || idx >= this.length) return;
     if (idx === 0) {
       const head = this.head;
-      if (this.tail === this.head) this.tail = null;
-      this.head = this.head?.next || null;
+      if (this.head === this.tail) this.tail = null;
+      if (this.head) this.head = this.head.next;
       this.length--;
       return head?.value;
     }
 
     const prev = this.nodeAt(idx - 1);
-    const curr = prev?.next;
+    if (!prev) throw new Error("prev not found");
 
-    if (prev) prev.next = curr?.next || null;
+    const curr = prev.next;
+    prev.next = curr?.next || null;
     if (curr === this.tail) this.tail = prev;
-
     this.length--;
     return curr?.value;
   }
@@ -87,9 +86,9 @@ export default class SinglyLinkedList<T> {
   private nodeAt(idx: number): ListNode<T> | null {
     let i = 0;
     let curr = this.head;
-
     while (curr) {
-      if (i === idx) return curr;
+      if (idx === i) return curr;
+
       curr = curr.next;
       i++;
     }

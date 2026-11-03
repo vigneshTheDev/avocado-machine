@@ -19,7 +19,10 @@ export class MinHeap {
     if (this.size <= 1) return this.arr.pop();
 
     const min = this.arr[0];
-    const last = this.arr.pop()!;
+
+    const last = this.arr.pop();
+    if (last == null) throw new Error("last value not found");
+
     this.arr[0] = last;
 
     this.heapifyDown(0);
@@ -35,7 +38,20 @@ export class MinHeap {
   }
 
   private parent(idx: number) {
-    return Math.ceil(idx / 2) - 1;
+    return Math.floor((idx - 1) / 2);
+  }
+
+  private heapifyUp(idx: number) {
+    const pIdx = this.parent(idx);
+
+    const val = this.arr[idx];
+    const pVal = this.arr[pIdx];
+
+    if (pVal > val) {
+      this.arr[idx] = pVal;
+      this.arr[pIdx] = val;
+      this.heapifyUp(pIdx);
+    }
   }
 
   private heapifyDown(idx: number) {
@@ -49,28 +65,13 @@ export class MinHeap {
     const rVal = this.arr[rIdx];
 
     if (lVal < val && (rIdx >= this.size || lVal <= rVal)) {
-      this.arr[lIdx] = val;
       this.arr[idx] = lVal;
+      this.arr[lIdx] = val;
       this.heapifyDown(lIdx);
     } else if (rIdx < this.size && rVal < val && rVal < lVal) {
-      this.arr[rIdx] = val;
       this.arr[idx] = rVal;
+      this.arr[rIdx] = val;
       this.heapifyDown(rIdx);
-    }
-  }
-
-  private heapifyUp(idx: number) {
-    if (idx === 0) return;
-
-    const pIdx = this.parent(idx);
-
-    const val = this.arr[idx];
-    const pVal = this.arr[pIdx];
-
-    if (val < pVal) {
-      this.arr[idx] = pVal;
-      this.arr[pIdx] = val;
-      this.heapifyUp(pIdx);
     }
   }
 }

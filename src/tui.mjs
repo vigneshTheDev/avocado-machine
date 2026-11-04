@@ -5,6 +5,7 @@ import path from 'node:path';
 import {Marked} from 'marked';
 import {markedTerminal} from 'marked-terminal';
 import {collections, gradeProblem, isDue, localDate, problems, runTests, searchGroups, solutionPath, startProblem, status, suggestions, testCommand} from './core.mjs';
+import {launchEditor, resolveEditor, saveConfig} from './editor.mjs';
 
 const h = React.createElement;
 
@@ -119,6 +120,7 @@ function renderPracticeList(groups, highlightedId, safeIndex, today, capacity, m
 export const practiceShortcuts = [
   ['↑↓', 'navigate'],
   ['Enter', 'path'],
+  ['e', 'edit'],
   ['t', 'test'],
   ['a', 'reset attempt'],
   ['x', 'clear output'],
@@ -258,8 +260,16 @@ function App({initialCollection, initialCount, initialMode = 'practice'}) {
         const updated = gradeProblem(collection, id, grade);
         setItems(problems(collection));
         setMessage(`#${id} graded ${grade}; next review ${updated.sm2.dueDate}`);
+      } else if (verb === '/editor') {
+        if (parts.length === 1) {
+          setMessage(`Current editor: ${resolveEditor()}`);
+        } else {
+          const newEditor = parts.slice(1).join(' ');
+          saveConfig({editor: newEditor});
+          setMessage(`Editor set to ${newEditor}`);
+        }
       } else if (verb === '/help') {
-        setMessage('/practice, /new, /review [collection] [count] · /done <number> <grade> · /quit');
+        setMessage('/practice, /new, /review [collection] [count] · /done <number> <grade> · /editor [cmd] · /quit');
       } else if (verb === '/quit') exit();
       else throw new Error(`Unknown command: ${verb || command}`);
     } catch (error) {
@@ -291,6 +301,24 @@ function App({initialCollection, initialCount, initialMode = 'practice'}) {
     } catch (error) {
       setMessage(error.message);
     }
+  }
+
+  function editHighlighted() {
+    if (!highlighted || testing) return;
+    const problem = highlighted;
+    const editorName = resolveEditor();
+    setMessage(`Opening #${problem.id} in ${editorName}…`);
+    const {code, changed} = launchEditor(problem);
+    if (code !== 0) {
+      setMessage(`Editor exited with code ${code}`);
+      return;
+    }
+    if (!changed) {
+      setMessage(`#${problem.id} closed without changes`);
+      return;
+    }
+    setMessage(`Saved #${problem.id} · running tests…`);
+    testHighlighted();
   }
 
   function testHighlighted() {
@@ -340,6 +368,7 @@ function App({initialCollection, initialCount, initialMode = 'practice'}) {
     if (input.startsWith('/')) { setMode('command'); setDraft(input); return; }
     if (input === 's' && screen === 'practice') { setMode('search'); setDraft(query); return; }
     if (input === 'c' && screen === 'practice') { setQuery(''); setSelectedIndex(0); return; }
+    if ((input === 'e' || input === 'v') && screen === 'practice' && !testing) { editHighlighted(); return; }
     if (input === 't' && screen === 'practice' && !testing) { testHighlighted(); return; }
     if (input === 'a' && screen === 'practice' && !testing) { archiveAndResetHighlighted(); return; }
     if (input === 'x' && screen === 'practice') { setTestResult(null); setMessage(''); return; }

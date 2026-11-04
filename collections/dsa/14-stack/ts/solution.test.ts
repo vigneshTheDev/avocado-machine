@@ -39,3 +39,58 @@ test("empty reads, falsy entries, and repeated drain/refill", () => {
     expect(list.pop()).toBeUndefined();
   }
 });
+
+// Deterministic PRNG so failures are reproducible.
+function seeded(seed: number) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+test("keeps LIFO order across 10,000 entries", () => {
+  const list = new Stack<number>();
+  for (let i = 0; i < 10_000; i++) list.push(i);
+  expect(list.length).toBe(10_000);
+  for (let i = 9_999; i >= 0; i--) {
+    expect(list.peek()).toBe(i);
+    expect(list.pop()).toBe(i);
+  }
+  expect(list.length).toBe(0);
+  expect(list.pop()).toBeUndefined();
+});
+
+test("stores other falsy values as ordinary entries", () => {
+  const list = new Stack<string | boolean | null>();
+  list.push(null);
+  list.push("");
+  list.push(false);
+  expect(list.length).toBe(3);
+  expect(list.pop()).toBe(false);
+  expect(list.peek()).toBe("");
+  expect(list.pop()).toBe("");
+  expect(list.pop()).toBeNull();
+  expect(list.length).toBe(0);
+  expect(list.peek()).toBeUndefined();
+});
+
+test("matches an array model over seeded random operations", () => {
+  const random = seeded(14);
+  const list = new Stack<number>();
+  const model: number[] = [];
+  for (let step = 0; step < 5000; step++) {
+    const op = random();
+    if (op < 0.5) {
+      const value = Math.floor(random() * 5);
+      list.push(value);
+      model.push(value);
+    } else if (op < 0.85) {
+      expect(list.pop(), `step ${step}`).toBe(model.pop());
+    } else {
+      expect(list.peek(), `step ${step}`).toBe(model[model.length - 1]);
+    }
+    expect(list.length, `step ${step}`).toBe(model.length);
+  }
+});

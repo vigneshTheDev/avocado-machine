@@ -178,3 +178,40 @@ test("object keys use identity rather than structural equality", () => {
 test.each([-1, -0.5, 0.5, 1.5, NaN, Infinity, -Infinity])("rejects invalid capacity %s", (capacity) => {
   expect(() => new LRU<string, number>(capacity)).toThrow();
 });
+
+test.each([0, 1, 2, 3])("matches a Map-based model over seeded random operations at capacity %i", (capacity) => {
+  // Deterministic PRNG so failures are reproducible.
+  let seed = 0x1badb002 + capacity;
+  const random = () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const cache = new LRU<string, number>(capacity);
+  // Map iteration order is insertion order, so delete + set moves a key to the
+  // most recent end and the first key is the least recently used.
+  const model = new Map<string, number>();
+  const keys = ["a", "b", "c", "d", "e"];
+  for (let step = 0; step < 3000; step++) {
+    const key = keys[Math.floor(random() * keys.length)];
+    const where = `step ${step}, key ${key}`;
+    if (random() < 0.5) {
+      const value = Math.floor(random() * 10);
+      cache.update(key, value);
+      if (capacity === 0) continue;
+      model.delete(key);
+      model.set(key, value);
+      if (model.size > capacity) model.delete(model.keys().next().value!);
+    } else {
+      const expected = model.get(key);
+      expect(cache.get(key), where).toBe(expected);
+      if (model.has(key)) {
+        model.delete(key);
+        model.set(key, expected!);
+      }
+    }
+  }
+  for (const key of keys) expect(cache.get(key)).toBe(model.get(key));
+});

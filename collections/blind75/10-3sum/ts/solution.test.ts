@@ -61,6 +61,44 @@ const cases = [
         1
       ]
     ]
+  },
+  {
+    "name": "no triplet sums to zero",
+    "args": [
+      [
+        0,
+        1,
+        1
+      ]
+    ],
+    "expected": []
+  },
+  {
+    "name": "duplicates on both sides of zero",
+    "args": [
+      [
+        -2,
+        0,
+        1,
+        1,
+        2,
+        -2,
+        2,
+        0
+      ]
+    ],
+    "expected": [
+      [
+        -2,
+        0,
+        2
+      ],
+      [
+        -2,
+        1,
+        1
+      ]
+    ]
   }
 ];
 

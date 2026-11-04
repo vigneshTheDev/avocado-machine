@@ -36,6 +36,72 @@ const cases = [
       ]
     ],
     "expected": false
+  },
+  {
+    "name": "same shape with different values",
+    "args": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        4
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "one tree is deeper",
+    "args": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        2,
+        null,
+        3
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "single nodes with different values",
+    "args": [
+      [
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "identical larger trees",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        null,
+        5
+      ],
+      [
+        1,
+        2,
+        3,
+        4,
+        null,
+        5
+      ]
+    ],
+    "expected": true
   }
 ];
 

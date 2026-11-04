@@ -30,6 +30,50 @@ const cases = [
       ]
     ],
     "expected": true
+  },
+  {
+    "name": "cycle contradiction",
+    "args": [
+      [
+        "z",
+        "x",
+        "z"
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "duplicate words",
+    "args": [
+      [
+        "abc",
+        "abc"
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "LeetCode example",
+    "args": [
+      [
+        "wrt",
+        "wrf",
+        "er",
+        "ett",
+        "rftt"
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        "z",
+        "o"
+      ]
+    ],
+    "expected": true
   }
 ];
 

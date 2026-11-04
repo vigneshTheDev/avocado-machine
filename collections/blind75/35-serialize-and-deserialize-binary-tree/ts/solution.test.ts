@@ -45,6 +45,109 @@ const cases = [
       null,
       3
     ]
+  },
+  {
+    "name": "multi-digit and negative values",
+    "args": [
+      [
+        -123,
+        45,
+        -6789,
+        null,
+        1000,
+        0,
+        -1
+      ]
+    ],
+    "expected": [
+      -123,
+      45,
+      -6789,
+      null,
+      1000,
+      0,
+      -1
+    ]
+  },
+  {
+    "name": "single zero node",
+    "args": [
+      [
+        0
+      ]
+    ],
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "full tree",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        null,
+        null,
+        4,
+        5
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      3,
+      null,
+      null,
+      4,
+      5
+    ]
+  },
+  {
+    "name": "deep right-skewed tree",
+    "args": [
+      [0, ...Array.from({length: 999}, (_, i) => [null, i + 1]).flat()]
+    ],
+    "expected": [0, ...Array.from({length: 999}, (_, i) => [null, i + 1]).flat()]
   }
 ];
 

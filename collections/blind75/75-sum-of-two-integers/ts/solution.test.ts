@@ -25,6 +25,54 @@ const cases = [
       7
     ],
     "expected": 3
+  },
+  {
+    "name": "zero plus zero",
+    "args": [
+      0,
+      0
+    ],
+    "expected": 0
+  },
+  {
+    "name": "opposites cancel",
+    "args": [
+      -1000,
+      1000
+    ],
+    "expected": 0
+  },
+  {
+    "name": "largest inputs",
+    "args": [
+      1000,
+      1000
+    ],
+    "expected": 2000
+  },
+  {
+    "name": "smallest inputs",
+    "args": [
+      -1000,
+      -1000
+    ],
+    "expected": -2000
+  },
+  {
+    "name": "carry propagates through the sign bit",
+    "args": [
+      -1,
+      1
+    ],
+    "expected": 0
+  },
+  {
+    "name": "description example",
+    "args": [
+      4,
+      7
+    ],
+    "expected": 11
   }
 ];
 

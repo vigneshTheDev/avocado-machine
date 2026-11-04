@@ -40,6 +40,49 @@ const cases = [
       "abcdefghij",
       "x"
     ]
+  },
+  {
+    "name": "single empty string is not an empty list",
+    "args": [
+      [
+        ""
+      ]
+    ],
+    "expected": [
+      ""
+    ]
+  },
+  {
+    "name": "strings containing commas and length-like prefixes",
+    "args": [
+      [
+        ",",
+        "3,abc",
+        "1#",
+        "#",
+        "0#"
+      ]
+    ],
+    "expected": [
+      ",",
+      "3,abc",
+      "1#",
+      "#",
+      "0#"
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        "Hello",
+        "World"
+      ]
+    ],
+    "expected": [
+      "Hello",
+      "World"
+    ]
   }
 ];
 
@@ -53,4 +96,11 @@ test('encoded data can be decoded by a different Codec instance', () => {
     const encoded = new Codec().encode(input);
     expect(new Codec().decode(encoded)).toEqual(input);
     expect(new Codec().encode([])).not.toBe(new Codec().encode(['']));
+});
+
+test('lengths of 9, 99, 100 and 1000 characters and every ASCII character survive a round trip', () => {
+    const ascii = Array.from({length: 128}, (_, i) => String.fromCharCode(i)).join('');
+    const input = ['a'.repeat(9), 'b'.repeat(99), 'c'.repeat(100), 'd'.repeat(1000), ascii, '9#' + ascii];
+    const codec = new Codec();
+    expect(codec.decode(codec.encode(input))).toEqual(input);
 });

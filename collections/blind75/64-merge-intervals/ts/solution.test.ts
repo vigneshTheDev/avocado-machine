@@ -64,6 +64,118 @@ const cases = [
         10
       ]
     ]
+  },
+  {
+    "name": "unsorted input",
+    "args": [
+      [
+        [
+          8,
+          10
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          15,
+          18
+        ]
+      ]
+    ],
+    "expected": [
+      [
+        1,
+        6
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        15,
+        18
+      ]
+    ]
+  },
+  {
+    "name": "everything merges into one",
+    "args": [
+      [
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    ],
+    "expected": [
+      [
+        1,
+        7
+      ]
+    ]
+  },
+  {
+    "name": "duplicate intervals",
+    "args": [
+      [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    ],
+    "expected": [
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    ],
+    "expected": [
+      [
+        1,
+        3
+      ]
+    ]
   }
 ];
 

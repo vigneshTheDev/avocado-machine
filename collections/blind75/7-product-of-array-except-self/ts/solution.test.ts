@@ -48,6 +48,40 @@ const cases = [
       -8,
       6
     ]
+  },
+  {
+    "name": "single zero leaves one nonzero product",
+    "args": [
+      [
+        1,
+        2,
+        0,
+        4
+      ]
+    ],
+    "expected": [
+      0,
+      0,
+      8,
+      0
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        4,
+        6
+      ]
+    ],
+    "expected": [
+      48,
+      24,
+      12,
+      8
+    ]
   }
 ];
 

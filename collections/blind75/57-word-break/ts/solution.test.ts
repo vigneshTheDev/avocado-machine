@@ -39,6 +39,47 @@ const cases = [
       ]
     ],
     "expected": true
+  },
+  {
+    "name": "overlapping words need backtracking",
+    "args": [
+      "aaaaaaa",
+      [
+        "aaaa",
+        "aaa"
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "dictionary words may be reused",
+    "args": [
+      "applepenapple",
+      [
+        "apple",
+        "pen"
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "description example",
+    "args": [
+      "neetcode",
+      [
+        "neet",
+        "code"
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "long run of a with a trailing b",
+    "args": [
+      "a".repeat(60) + "b",
+      ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"]
+    ],
+    "expected": false
   }
 ];
 

@@ -32,6 +32,60 @@ const cases = [
       ]
     ],
     "expected": 24
+  },
+  {
+    "name": "single zero",
+    "args": [
+      [
+        0
+      ]
+    ],
+    "expected": 0
+  },
+  {
+    "name": "even count of negatives",
+    "args": [
+      [
+        -1,
+        -2,
+        -3,
+        -4
+      ]
+    ],
+    "expected": 24
+  },
+  {
+    "name": "odd count of negatives",
+    "args": [
+      [
+        -2,
+        -3,
+        -4
+      ]
+    ],
+    "expected": 12
+  },
+  {
+    "name": "negative next to zero",
+    "args": [
+      [
+        -2,
+        0
+      ]
+    ],
+    "expected": 0
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        2,
+        4,
+        -3,
+        5
+      ]
+    ],
+    "expected": 8
   }
 ];
 

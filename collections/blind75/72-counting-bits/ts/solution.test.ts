@@ -26,12 +26,91 @@ const cases = [
     ]
   },
   {
-    "name": "zero only",
+    "name": "n = 1",
     "args": [
-      0
+      1
     ],
     "expected": [
-      0
+      0,
+      1
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      4
+    ],
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1
+    ]
+  },
+  {
+    "name": "n = 16 ends on a power of two",
+    "args": [
+      16
+    ],
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      4,
+      1
+    ]
+  },
+  {
+    "name": "n = 31 ends on all five low bits set",
+    "args": [
+      31
+    ],
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      4,
+      1,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      4,
+      2,
+      3,
+      3,
+      4,
+      3,
+      4,
+      4,
+      5
     ]
   }
 ];

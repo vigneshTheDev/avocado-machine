@@ -44,6 +44,47 @@ const cases = [
       2,
       4
     ]
+  },
+  {
+    "name": "remove the tail",
+    "args": [
+      [
+        1,
+        2,
+        3
+      ],
+      1
+    ],
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "two nodes, remove the head",
+    "args": [
+      [
+        1,
+        2
+      ],
+      2
+    ],
+    "expected": [
+      2
+    ]
+  },
+  {
+    "name": "two nodes, remove the tail",
+    "args": [
+      [
+        1,
+        2
+      ],
+      1
+    ],
+    "expected": [
+      1
+    ]
   }
 ];
 

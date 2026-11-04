@@ -25,6 +25,38 @@ const cases = [
       "aa"
     ],
     "expected": 2
+  },
+  {
+    "name": "identical strings",
+    "args": [
+      "abcde",
+      "abcde"
+    ],
+    "expected": 5
+  },
+  {
+    "name": "no common letters",
+    "args": [
+      "abc",
+      "xyz"
+    ],
+    "expected": 0
+  },
+  {
+    "name": "description example",
+    "args": [
+      "cat",
+      "crabt"
+    ],
+    "expected": 3
+  },
+  {
+    "name": "1000-character strings",
+    "args": [
+      "ab".repeat(500),
+      "ba".repeat(500)
+    ],
+    "expected": 999
   }
 ];
 

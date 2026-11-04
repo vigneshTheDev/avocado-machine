@@ -44,6 +44,110 @@ const cases = [
       ]
     ],
     "expected": 3
+  },
+  {
+    "name": "identical intervals",
+    "args": [
+      [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ]
+    ],
+    "expected": 3
+  },
+  {
+    "name": "unsorted input",
+    "args": [
+      [
+        [
+          15,
+          20
+        ],
+        [
+          0,
+          40
+        ],
+        [
+          5,
+          10
+        ]
+      ]
+    ],
+    "expected": 2
+  },
+  {
+    "name": "single meeting",
+    "args": [
+      [
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "staggered overlaps",
+    "args": [
+      [
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          19
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          10,
+          20
+        ],
+        [
+          11,
+          30
+        ]
+      ]
+    ],
+    "expected": 4
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        [
+          0,
+          40
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ]
+    ],
+    "expected": 2
   }
 ];
 

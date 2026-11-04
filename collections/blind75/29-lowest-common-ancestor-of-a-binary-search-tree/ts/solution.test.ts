@@ -53,6 +53,107 @@ const cases = [
       8
     ],
     "expected": 6
+  },
+  {
+    "name": "both targets in the left subtree",
+    "args": [
+      [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      3,
+      5
+    ],
+    "expected": 4
+  },
+  {
+    "name": "targets on both sides of a left-subtree node",
+    "args": [
+      [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      0,
+      5
+    ],
+    "expected": 2
+  },
+  {
+    "name": "both targets in the right subtree",
+    "args": [
+      [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      7,
+      9
+    ],
+    "expected": 8
+  },
+  {
+    "name": "one target is the root",
+    "args": [
+      [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      6,
+      4
+    ],
+    "expected": 6
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        5,
+        3,
+        8,
+        1,
+        4,
+        7,
+        9
+      ],
+      3,
+      8
+    ],
+    "expected": 5
   }
 ];
 

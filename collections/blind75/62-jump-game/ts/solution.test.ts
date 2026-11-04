@@ -34,6 +34,58 @@ const cases = [
       ]
     ],
     "expected": true
+  },
+  {
+    "name": "large jump skips zeros",
+    "args": [
+      [
+        5,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "jump lands exactly on a zero before the end",
+    "args": [
+      [
+        1,
+        0,
+        1
+      ]
+    ],
+    "expected": false
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        0,
+        1,
+        0
+      ]
+    ],
+    "expected": true
+  },
+  {
+    "name": "long array of ones",
+    "args": [
+      new Array(10000).fill(1)
+    ],
+    "expected": true
+  },
+  {
+    "name": "long array blocked just before the end",
+    "args": [
+      [...new Array(9998).fill(1), 0, 0]
+    ],
+    "expected": false
   }
 ];
 

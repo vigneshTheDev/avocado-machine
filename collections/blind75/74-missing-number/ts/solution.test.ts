@@ -32,6 +32,52 @@ const cases = [
       ]
     ],
     "expected": 2
+  },
+  {
+    "name": "n is missing",
+    "args": [
+      [
+        0,
+        1
+      ]
+    ],
+    "expected": 2
+  },
+  {
+    "name": "single zero",
+    "args": [
+      [
+        0
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        0,
+        2
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "LeetCode example",
+    "args": [
+      [
+        9,
+        6,
+        4,
+        2,
+        3,
+        5,
+        7,
+        0,
+        1
+      ]
+    ],
+    "expected": 8
   }
 ];
 

@@ -30,6 +30,48 @@ const cases = [
       []
     ],
     "expected": 0
+  },
+  {
+    "name": "two houses",
+    "args": [
+      [
+        2,
+        1
+      ]
+    ],
+    "expected": 2
+  },
+  {
+    "name": "all houses equal",
+    "args": [
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    ],
+    "expected": 12
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        1,
+        3,
+        3
+      ]
+    ],
+    "expected": 4
+  },
+  {
+    "name": "2000 houses",
+    "args": [
+      new Array(2000).fill(1)
+    ],
+    "expected": 1000
   }
 ];
 

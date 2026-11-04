@@ -30,6 +30,76 @@ const cases = [
       ]
     ],
     "expected": 5
+  },
+  {
+    "name": "two houses",
+    "args": [
+      [
+        2,
+        3
+      ]
+    ],
+    "expected": 3
+  },
+  {
+    "name": "all houses equal, even count",
+    "args": [
+      [
+        4,
+        4,
+        4,
+        4
+      ]
+    ],
+    "expected": 8
+  },
+  {
+    "name": "all houses equal, odd count",
+    "args": [
+      [
+        4,
+        4,
+        4
+      ]
+    ],
+    "expected": 4
+  },
+  {
+    "name": "skipping both the first and the last house is optimal",
+    "args": [
+      [
+        1,
+        3,
+        1,
+        3,
+        1
+      ]
+    ],
+    "expected": 6
+  },
+  {
+    "name": "first and last are adjacent in a longer ring",
+    "args": [
+      [
+        2,
+        7,
+        9,
+        3,
+        1
+      ]
+    ],
+    "expected": 11
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        3,
+        4,
+        3
+      ]
+    ],
+    "expected": 4
   }
 ];
 

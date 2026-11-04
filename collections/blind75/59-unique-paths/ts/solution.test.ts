@@ -25,6 +25,46 @@ const cases = [
       3
     ],
     "expected": 6
+  },
+  {
+    "name": "one row, many columns",
+    "args": [
+      1,
+      100
+    ],
+    "expected": 1
+  },
+  {
+    "name": "many rows, one column",
+    "args": [
+      100,
+      1
+    ],
+    "expected": 1
+  },
+  {
+    "name": "two by two",
+    "args": [
+      2,
+      2
+    ],
+    "expected": 2
+  },
+  {
+    "name": "three by seven",
+    "args": [
+      3,
+      7
+    ],
+    "expected": 28
+  },
+  {
+    "name": "23 by 12",
+    "args": [
+      23,
+      12
+    ],
+    "expected": 193536720
   }
 ];
 

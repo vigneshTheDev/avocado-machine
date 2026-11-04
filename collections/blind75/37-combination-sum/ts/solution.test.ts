@@ -50,6 +50,97 @@ const cases = [
       7
     ],
     "expected": []
+  },
+  {
+    "name": "target smaller than every candidate",
+    "args": [
+      [
+        5,
+        6
+      ],
+      3
+    ],
+    "expected": []
+  },
+  {
+    "name": "single candidate equal to the target",
+    "args": [
+      [
+        7
+      ],
+      7
+    ],
+    "expected": [
+      [
+        7
+      ]
+    ]
+  },
+  {
+    "name": "each combination appears once",
+    "args": [
+      [
+        2,
+        3
+      ],
+      6
+    ],
+    "expected": [
+      [
+        2,
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  {
+    "name": "no permutations of the same combination",
+    "args": [
+      [
+        2,
+        3
+      ],
+      8
+    ],
+    "expected": [
+      [
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        2,
+        3,
+        3
+      ]
+    ]
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        2,
+        5,
+        6,
+        9
+      ],
+      9
+    ],
+    "expected": [
+      [
+        2,
+        2,
+        5
+      ],
+      [
+        9
+      ]
+    ]
   }
 ];
 

@@ -37,6 +37,36 @@ const cases = [
       ]
     ],
     "expected": 3
+  },
+  {
+    "name": "single node",
+    "args": [
+      [
+        1
+      ]
+    ],
+    "expected": 1
+  },
+  {
+    "name": "description example",
+    "args": [
+      [
+        1,
+        2,
+        3,
+        null,
+        null,
+        4
+      ]
+    ],
+    "expected": 3
+  },
+  {
+    "name": "depth-1000 right chain",
+    "args": [
+      [0, ...Array.from({length: 999}, (_, i) => [null, i + 1]).flat()]
+    ],
+    "expected": 1000
   }
 ];
 

@@ -18,6 +18,16 @@ const cases = [
     args: [[[]]],
     expected: [[]],
   },
+  {
+    name: "square with a diagonal",
+    args: [[[2, 3, 4], [1, 3], [1, 2, 4], [1, 3]]],
+    expected: [[2, 3, 4], [1, 3], [1, 2, 4], [1, 3]],
+  },
+  {
+    name: "path of five nodes",
+    args: [[[2], [1, 3], [2, 4], [3, 5], [4]]],
+    expected: [[2], [1, 3], [2, 4], [3, 5], [4]],
+  },
 ];
 
 test.each(cases)("$name", ({ args, expected }) => {
@@ -38,4 +48,14 @@ test.each(cases)("$name", ({ args, expected }) => {
   visit(original, oldNodes);
   visit(copy, newNodes);
   expect([...newNodes].every((node) => !oldNodes.has(node))).toBe(true);
+});
+
+test("mutating the clone leaves the original graph unchanged", () => {
+  const adjacency = [[2, 3, 4], [1, 3], [1, 2, 4], [1, 3]];
+  const original = graphFrom(adjacency)!;
+  const copy = cloneGraph(original)!;
+  copy.val = 99;
+  copy.neighbors[0].neighbors.length = 0;
+  copy.neighbors.pop();
+  expect(graphToAdjacency(original)).toEqual(adjacency);
 });

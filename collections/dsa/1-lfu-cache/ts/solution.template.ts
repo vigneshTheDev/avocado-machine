@@ -1,15 +1,13 @@
-interface Node<T> {
-	value: T;
-	next?: Node<T>;
-	prev?: Node<T>;
-}
-
 export class LFU<T> {
-	length: number;
+	private length = 0;
 	constructor(private capacity: number) {
 	}
 
-	get(key: string) {
+  get size() {
+    return this.length
+  }
+
+	get(key: string): T | null {
 	}
 
 	put(key: string, value: T) {

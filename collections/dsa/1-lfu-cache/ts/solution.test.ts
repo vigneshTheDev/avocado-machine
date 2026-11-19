@@ -150,17 +150,20 @@ describe("LFU", () => {
     expect(lfu.get("d")).toBe(4);
   });
 
-  test.each([0, false, ""])("returns the stored falsy value %j instead of a miss", (value) => {
-    const lfu = new LFU<unknown>(2);
-    lfu.put("a", value);
-    lfu.put("b", "other");
-    expect(lfu.get("a")).toBe(value);
+  test.each([0, false, ""])(
+    "returns the stored falsy value %j instead of a miss",
+    (value) => {
+      const lfu = new LFU<unknown>(2);
+      lfu.put("a", value);
+      lfu.put("b", "other");
+      expect(lfu.get("a")).toBe(value);
 
-    // a has frequency 2, so b is evicted.
-    lfu.put("c", "new");
-    expect(lfu.get("b")).toBeNull();
-    expect(lfu.get("a")).toBe(value);
-  });
+      // a has frequency 2, so b is evicted.
+      lfu.put("c", "new");
+      expect(lfu.get("b")).toBeNull();
+      expect(lfu.get("a")).toBe(value);
+    },
+  );
 
   test("matches a reference model over a long randomized sequence", () => {
     // Deterministic PRNG so failures are reproducible.
@@ -188,9 +191,15 @@ describe("LFU", () => {
           if (entry) {
             entry.freq++;
             entry.used = clock;
-            expect(actual, `capacity ${capacity}, step ${step}: get(${key})`).toBe(entry.value);
+            expect(
+              actual,
+              `capacity ${capacity}, step ${step}: get(${key})`,
+            ).toBe(entry.value);
           } else {
-            expect(actual, `capacity ${capacity}, step ${step}: get(${key})`).toBeNull();
+            expect(
+              actual,
+              `capacity ${capacity}, step ${step}: get(${key})`,
+            ).toBeNull();
           }
         } else {
           const value = Math.floor(random() * 1000);
@@ -203,8 +212,10 @@ describe("LFU", () => {
             if (model.length >= capacity) {
               let victim = 0;
               for (let i = 1; i < model.length; i++) {
-                const a = model[i], b = model[victim];
-                if (a.freq < b.freq || (a.freq === b.freq && a.used < b.used)) victim = i;
+                const a = model[i],
+                  b = model[victim];
+                if (a.freq < b.freq || (a.freq === b.freq && a.used < b.used))
+                  victim = i;
               }
               model.splice(victim, 1);
             }

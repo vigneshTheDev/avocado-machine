@@ -42,8 +42,10 @@ export default class SinglyLinkedList<T> {
     if (prev == null) throw new Error("prev not found");
 
     const curr = prev.next;
+
     prev.next = node;
     node.next = curr;
+
     this.length++;
   }
 
@@ -51,34 +53,37 @@ export default class SinglyLinkedList<T> {
     let curr = this.head;
     let prev: ListNode<T> | null = null;
     while (curr) {
-      if (curr.value === item) {
-        if (prev) prev.next = curr.next;
-        if (curr === this.head) this.head = curr.next;
-        if (curr === this.tail) this.tail = prev;
-        this.length--;
-        return curr.value;
+      if (curr.value !== item) {
+        prev = curr;
+        curr = curr.next;
+        continue;
       }
-      prev = curr;
-      curr = curr.next;
+
+      if (prev) prev.next = curr.next;
+      if (this.head === curr) this.head = curr.next;
+      if (this.tail === curr) this.tail = prev;
+      this.length--;
+
+      return item;
     }
   }
 
   removeAt(idx: number): T | undefined {
-    if (idx < 0 || idx >= this.length) return;
+    if (idx < 0 || idx >= this.length || this.head == null) return;
     if (idx === 0) {
       const head = this.head;
-      if (this.head === this.tail) this.tail = null;
-      if (this.head) this.head = this.head.next;
+      if (this.tail === this.head) this.tail = null;
+      this.head = this.head.next;
+
       this.length--;
-      return head?.value;
+      return head.value;
     }
 
     const prev = this.nodeAt(idx - 1);
-    if (!prev) throw new Error("prev not found");
+    if (prev == null) throw new Error("prev node not found");
 
     const curr = prev.next;
     prev.next = curr?.next || null;
-    if (curr === this.tail) this.tail = prev;
     this.length--;
     return curr?.value;
   }
@@ -87,8 +92,7 @@ export default class SinglyLinkedList<T> {
     let i = 0;
     let curr = this.head;
     while (curr) {
-      if (idx === i) return curr;
-
+      if (i === idx) return curr;
       curr = curr.next;
       i++;
     }

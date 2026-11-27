@@ -1,10 +1,6 @@
 export default class SinglyLinkedList<T> {
   public length: number = 0;
 
-  constructor() {
-    throw new Error("Not implemented");
-  }
-
   get(idx: number): T | undefined {
     throw new Error("Not implemented");
   }
@@ -17,9 +13,6 @@ export default class SinglyLinkedList<T> {
     throw new Error("Not implemented");
   }
 
-  /**
-   * @throws RangeError when the idx is out of bounds
-   */
   insertAt(item: T, idx: number): void {
     throw new Error("Not implemented");
   }
@@ -34,6 +27,6 @@ export default class SinglyLinkedList<T> {
 }
 
 class ListNode<T> {
-  public next: ListNode<T> | null = null;
+  public next?: ListNode<T>;
   constructor(public value: T) {}
 }

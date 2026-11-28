@@ -19,6 +19,7 @@ export default class SinglyLinkedList<T> {
   append(item: T): void {
     const node = new ListNode(item);
     if (this.tail) this.tail.next = node;
+
     this.tail = node;
     if (!this.head) this.head = node;
     this.length++;
@@ -28,11 +29,10 @@ export default class SinglyLinkedList<T> {
     if (idx === 0) return this.prepend(item);
     if (idx === this.length) return this.append(item);
 
-    const prev = this.nodeAt(idx - 1);
-    if (!prev) return;
-
-    const curr = prev.next;
+    let prev = this.nodeAt(idx - 1)!;
+    let curr = prev.next;
     const node = new ListNode(item);
+
     prev.next = node;
     node.next = curr;
     this.length++;
@@ -59,17 +59,16 @@ export default class SinglyLinkedList<T> {
       const head = this.head;
       this.head = head?.next;
       if (!this.head) this.tail = undefined;
-
       this.length--;
       return head?.value;
     }
 
-    const prev = this.nodeAt(idx - 1);
+    let prev = this.nodeAt(idx - 1);
     if (!prev) return;
 
-    const curr = prev.next;
+    let curr = prev.next;
     prev.next = curr?.next;
-    if (this.tail === curr) this.tail = prev;
+    if (curr === this.tail) this.tail = prev;
     this.length--;
     return curr?.value;
   }
@@ -79,6 +78,7 @@ export default class SinglyLinkedList<T> {
     let curr = this.head;
     while (curr) {
       if (i === idx) return curr;
+
       curr = curr.next;
       i++;
     }
